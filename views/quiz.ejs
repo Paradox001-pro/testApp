@@ -1,0 +1,99 @@
+<%- include('./partials/header') -%>
+<div class="container ">
+    <%if(adminquestion){%>
+    <% adminquestion.forEach(adminquestion =>{%>
+    <h3 class="right "><%= adminquestion.time %> </h3>
+    <!-- <h3 class="right">10</h3> -->
+    <% })%>
+    <%}%>
+    <h1 class="mt-4 text-primary">Test</h1>
+    <p class="lead mb-3">Goodluck <span class="text-primary"><%= user.firstname %></span></p>
+
+    <!-- COLLECTING QUESTION FROM DB -->
+    <div class="container">
+        <%if(adminquestion){%>
+        <!-- const cookie = require("js-cookie") -->
+        <!-- const data = cookie.get("qut") -->
+        <%var c = 0; adminquestion.forEach(adminquestion =>{%>
+        <div id="answers" class="d-none">
+            <p id="question<%= c%>" class="lead mb-3 text-primary"><%= adminquestion.question %></p>
+            <p id="opt1<%= c%>" value="<%= adminquestion.opt1 %>"><%= adminquestion.opt1 %></p>
+            <p id="opt2<%= c%>" value="<%= adminquestion.opt2 %>"><%= adminquestion.opt2 %></p>
+            <p id="opt3<%= c%>" value="<%= adminquestion.opt3 %>"><%= adminquestion.opt3 %></p>
+            <p id="opt4<%= c%>" value="<%= adminquestion.opt4 %>"><%= adminquestion.opt4 %></p>
+            <p id="answer<%= c%>" class="" value="<%= adminquestion.answer %>"><%= adminquestion.answer %></p>
+        </div>
+        <% c++;})%>
+        <%}%>
+
+    <!-- INSTRUCTION DISPLAY -->
+        <div class="home-box custom-box ">
+            <h1 class="text-primary">Instructions</h1>
+            <p>Total number of question : <span class="total-question"></span></p>
+            <p>Relax and enjoy your test</p>
+            <%if(adminquestion){%>
+        <% adminquestion.forEach(adminquestion =>{%>
+        <p><%= adminquestion.instruction %></p>
+        <% })%>
+        <%}%>
+            <button type="button" class="btn btn-success py-1" onclick="startQuiz()">Start Test</button>
+        </div>
+        
+        
+
+    
+
+    <!-- RESULT DISPLAY -->
+    <div >
+        
+        <form action="/test" name="quizz" method="post">
+
+            <!-- QUESTIONS DISPLAY -->
+            <div class="quiz-box custom-box hide">
+                <div class="question-number"></div>
+                <div class="question-text"></div>
+                <div class="option-container"></div>
+                <div class="next-question-btn">
+                    <button type="button" class="btn btn-success py-1" onclick="next()">Next</button>
+                </div>
+                <div class="answer-indicator"></div>
+            </div>
+
+            <div class="result-box custom-box hide">
+                <h1>Test Review</h1>
+                <p>Attempted <span class='total-attempt'></span>, out of
+                    <span class='total-question'></span>, You got
+                    <span class='total-correct'></span> correct, and 
+                    <span class="total-wrong"></span> wrong.
+                </p>
+                <div class="input-field">
+                    <h3><span class="text-success">TEST TITLE </span> <%= adminquestion.title %></h3>
+        <%if(adminquestion){%>
+        <input type="text" name="title" id="title" class="d-none" value="Mock Test">
+
+        <%}%>
+        <input type="text" name="name" id="name" class="d-none" value="<%= user.firstname %>"
+        required>
+        <!-- <label for="title">Test Title</label> -->
+    </div>
+
+    <table class="d-none">
+        <tr>
+            <td>Percentage</td>
+            <td><input type="text" name="testResultPercent" class='bg-white border-0 percentage'></td>
+        </tr>
+        <tr>
+            <td>Score</td>
+            <td><input type="text" name="testResultScore" class='bg-white border-0 total-score'></td>
+        </tr>
+        <tr>
+            <td><input type="text" name="user" value="<%= user._id %>"></td>
+        </tr>
+    </table>
+    <input type="submit" class="btn btn-success py-1" value="submit">
+</div>
+<!-- <button type="button" class="btn btn-success" onclick="tryAgainQuiz()">Try Again</button> -->
+<!-- <button type="button" class="btn btn-success" onclick="backToHome()">Go To Home</button> -->
+</form>
+</div>
+</div>

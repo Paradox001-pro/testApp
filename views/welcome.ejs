@@ -1,0 +1,33 @@
+<%- include('./partials/header') -%>
+
+<section class="banner">
+  <div class="row">
+    <div class="col">
+      <div class="overlay"></div>
+      <%if(user){%>
+      <div class="body text-center">
+        <h2 class="text-light mb-4 display-4"><span class="orange-text">nHub</span> Test App</h2>
+        <a href="/test" class="btn green">Take a Test</a>
+      </div>
+      <%}else{%>
+        <div class="body text-center">
+          <h2 class="text-light mb-4 display-4"><span class="orange-text">nHub</span> Test App</h2>
+        </div>
+      <%}%>
+    </div>
+  </div>
+</section>
+
+
+<!-- <div class="">
+    <div class="col-md-6 ">
+      <div class="card card-body text-center">
+        <h1><i class="fab fa-node-js fa-3x"></i></h1>
+        <p>Create an account or login</p>
+        <a href="/users/register" class="btn btn-primary btn-block mb-2"
+          >Register</a
+        >
+        <a href="" class="btn btn-secondary btn-block">Login</a>
+      </div>
+    </div>
+  </div> -->

@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card border-0">
+                <div class="card-header border-0">
+                </div>
+                <div class="card-body border-0">
+                    <p class="lead mb-3 text-primary"><%= question.question %></p>
+                    <div class="">
+                        <p class="d-inline-block m-3 text-success"><%= question.opt1 %></p>
+                        <p class="d-inline-block m-3"><%= question.opt2 %></p>
+                        <p class="d-inline-block m-3"><%= question.opt3 %></p>
+                        <p class="d-inline-block m-3"><%= question.opt4 %></p>
+                    </div>
+                </div>
+                <div class="card-footer border-0">
+                    <a href="/admin/edit/<%= question._id%>" class="btn yellow py-1 float-left black-text">Edit</a>
+                    <form action="/admin/<%= question._id%>" method="POST" id="delete-form">
+                        <input type="hidden" name='_method' value="DELETE">
+                        <button class="btn red py-1 float-right" type="submit">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

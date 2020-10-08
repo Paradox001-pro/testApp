@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body">
+        <h1 class="text-center mb-3">
+          <i class="fas fa-user"></i> Edit Profile
+        </h1>
+        <%- include('./partials/messages') -%>
+        <form action="/users/edit/<%= user.id %>" method="POST">
+          <input type="hidden" name="_method" value="PUT">
+
+          <div class="input-field">
+            <input type="text" id="firstname" name="firstname" class="form-control" value="<%= user.firstname %>" />
+            <label for="firstname">Edit First Name</label>
+          </div>
+
+          <div class="input-field">
+            <input type="text" id="lastname" name="lastname" class="form-control" value="<%= user.lastname %>" />
+            <label for="lastname">Edit Last Name</label>
+          </div>
+
+          <div class="input-field">
+            <input type="text" id="othername" name="othername" class="form-control" value="<%= user.othername %>" />
+            <label for="othername">Edit Other Name</label>
+          </div>
+
+          <div class="input-field">
+            <input type="email" id="email" name="email" class="form-control" value="<%= user.email %>" />
+            <label for="email">Email</label>
+          </div>
+
+          <div class="input-field d-none">
+            <input type="password" id="password" name="password" class="form-control" value="<%= user.password %>" />
+            <label for="password">Enter Password</label>
+          </div>
+          <button class="btn green black-text py-1 btn-right close">
+            Canel
+          </button>
+          <button type="submit" class="btn orange py-1 btn-left">
+            Update
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

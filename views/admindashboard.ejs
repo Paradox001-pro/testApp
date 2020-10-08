@@ -1,0 +1,74 @@
+<%if(user.isAdmin == true) { %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 center">
+            <h2 class="">Welcome to Admin Dashboard</h2>
+        </div>
+        <div class="col-12 d-md-flex center">
+            <div class="col-md-4">
+                <a href="/admin/question"><button class="btn green btn-block p-1 m-2">
+                        Set Questions
+                    </button></a>
+                <button class="btn blue btn-block p-1 m-1" data-toggle="modal" data-target="#contactModal">
+                    Questions Asked
+                </button>
+            </div>
+            <hr>
+            <!-- leader board -->
+            <div class="col-md-8">
+                <h2>ScoreBoard</h2>
+
+
+                <table class="table table-bordered table-striped">
+                    <th class="border-1">Interns</th>
+                    <th>Date of Test</th>
+                    <th>Score</th>
+
+                    <%result.forEach(result => {%>
+                    <tr>
+                        <td><%= result.name %></td>
+                        <td><%= result.dateSubmited %></td>
+                        <td><%= result.testResultPercent %></td>
+                    </tr>
+                    <%})%>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="modal fade text-dark" id="contactModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalTitle">Questions Asked</h5>
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ol class="list-group p-1">
+                    <%if(adminquestion){%>
+                    <%var c = 0; adminquestion.forEach(adminquestion =>{%>
+                    <li>
+                        <a class="list-group-item" href="/admin/<%= adminquestion._id %>" id="question<%= c%>"
+                            class="lead mb-3 text-primary "><%= adminquestion.question %></a>
+                    </li>
+                    <% c++;})%>
+                    <%}else{%>
+                    <p>No questions to display</p>
+                    <% }%>
+                    </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% }else{ %>
+<h1 class="display-1 center pt-5 mt-5 text-danger">404</h1>
+<p class="display-4 center text-danger">You are not authorized to access this page</p>
+<%}%>
