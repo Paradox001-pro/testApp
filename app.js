@@ -9,7 +9,10 @@ const session = require('express-session');
 const passport = require('passport');
 // const moment = require('moment');
 const app = express();
-const port = 9000;
+
+const port = process.env.PORT ||  9000;
+require('dotenv').config();
+
 // var shortDateFormat = "ddd # h:mmA";
 
 // const cookie = require('js-cookie')
@@ -20,14 +23,27 @@ const port = 9000;
 require('./config/passport')(passport); 
 
 //connect mongoose
-mongoose.connect('mongodb://localhost/nhubtestapp', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then((res) => {
-    console.log('connected to nHub testapp database')
-}).catch((err) => {
-    console.log(err)
+// mongoose.connect('mongodb://localhost/nhubtestapp', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// }).then((res) => {
+//     console.log('connected to nHub testapp database')
+// }).catch((err) => {
+//     console.log(err)
+// });
+
+
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://paradoxCodes:IC@nDoIt2@cluster0.nrckv.mongodb.net/nhubtestApp?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
 });
+
+
 
 //ejs
 app.use(expressLayouts);
