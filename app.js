@@ -23,14 +23,14 @@ require('dotenv').config();
 require('./config/passport')(passport); 
 
 //connect mongoose
-// mongoose.connect('mongodb://localhost/nhubtestapp', {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// }).then((res) => {
-//     console.log('connected to nHub testapp database')
-// }).catch((err) => {
-//     console.log(err)
-// });
+ mongoose.connect('mongodb+srv://paradoxCodes:IC@nDoIt2@nhubtestdb.o1fpa.mongodb.net/nHubTestApp?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then((res) => {
+    console.log('connected to nHub testapp database')
+}).catch((err) => {
+    console.log(err)
+});
 
 
 
